@@ -8,6 +8,6 @@ Use the soundcloud API to find tracks and comments with different timestamps, th
 
 A time machine. You choose how many hours in the future or past you want to travel and with the click of a button it provides you a fresh tweet (or multiple tweets) from people in another timezone, preferable a popular tweet or one that mentions keywords around what time it is for them. Maybe also provides other info about their location like the weather there if they provided that. Maybe use oauth to sign in through twitter and like or retweet, creepily.
 
-**Learning Goals**
+**Learning Goals & Other Stuff**
 
-Explore using new APIs in interesting ways. Learn more about RESTful APIs and how to interact with them. I would like to involve art if possible (see idea 1). The app should be accessible through a browser and have a great user experience, should also be like pretty or whatever. I would like to test _thoroughly_ as I build the app because I think that’s a weak spot for me historically.
+Explore using new APIs in interesting ways. Learn more about RESTful APIs and how to interact with them. I would like to involve art if possible (see idea 1). I would like to test _thoroughly_ as I build the app because I think that’s a weak spot for me historically. I will use Rails for development and in either case I would like to, if possible, make an API that provides the data and then a simple consumer for the API that should be accessible through a browser, deployed on Heroku, and have a great user experience, should also be like pretty or whatever. Target audience is basically anyone who's bored on the internet.

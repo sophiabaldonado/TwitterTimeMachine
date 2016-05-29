@@ -1,7 +1,9 @@
+require_relative '../../config/initializers/twitter'
 class TimeTweetsController < ApplicationController
 
-  def index
 
+  def index
+    @t = TwitterClient.search("#ruby -rt", :lang => "ja").first.text
   end
 
   def show

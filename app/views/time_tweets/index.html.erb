@@ -1,3 +1,9 @@
 <h1> Twitter Time Machine </h1>
 <p> sup girl </p>
-<p><%= @t %></p>
+<p><%= @tweet.text %></p>
+<p><%# @tweet.coordinates %></p>
+<p><%= @tweet.created_at.strftime("%I:%M%P, %B, %d, %Y") %></p>
+<p><%= @tweet.timezone %></p>
+
+<p><%= @place_tweet.text %></p>
+<p><%= @place_tweet.timezone %></p>

@@ -1,1 +1,9 @@
 <h1>show page!</h1>
+
+<p><%= @time_tweet.text %></p>
+<p><%# @time_tweet.coordinates %></p>
+<p><%# @time_tweet.created_at.strftime("%I:%M%P, %B, %d, %Y") %></p>
+<p><%= @time_tweet.created_at.utc? %></p>
+<p><%= @time_tweet.timezone %></p>
+<p><%= @time_tweet.coordinates %></p>
+<p><%# @time_tweet.timezone_map %></p>

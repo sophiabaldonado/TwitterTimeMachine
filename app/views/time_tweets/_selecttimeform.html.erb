@@ -1,0 +1,5 @@
+<%= form_tag :time_tweet do |f| %>
+  <%= label_tag :timewarp %>
+  <%= select_tag :timewarp, options_for_select(-12..12) %>
+  <%= submit_tag"Go!" %>
+<% end %>

@@ -7,16 +7,23 @@ class TimeTweet
   attr_reader :text, :user, :timezone, :created_at, :coordinates, :timezone_map
 
   def initialize(tweet)
-    @text = tweet.text
-    @user = tweet.user
-    @timezone = get_timezone(tweet)
-    @created_at = tweet.created_at
-    @coordinates = tweet.geo.coordinates
-    # @timezone_map = timezone_map(tweet)
+    if tweet != nil
+      @text = tweet.text
+      @user = tweet.user
+      @timezone = get_timezone(tweet)
+      @created_at = tweet.created_at
+      @coordinates = tweet.geo.coordinates
+      # @timezone_map = timezone_map(tweet)
+    end
+
   end
 
-  def self.find_tweet(query="weather")
-    tweet = TwitterClient.search("weather -rt").first
+  def self.find_tweet(timewarp)
+    tweets = TwitterClient.search(weather, result_type: "recent").to_a
+    tweets = tweets.take_while { |t| (t.user.utc_offset / OFFSET).to_s == timewarp }
+    # binding.pry
+    # raise
+    tweet = tweets[0]
     self.new(tweet)
   end
 

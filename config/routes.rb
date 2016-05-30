@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   # root 'welcome#index'
 
   root 'time_tweets#index'
-  get '/time_tweets' => 'time_tweets#show'
+  get '/time-tweet' => 'time_tweets#show'
+  post '/time-tweet' => 'time_tweets#create'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

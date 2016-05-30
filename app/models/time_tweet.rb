@@ -1,3 +1,5 @@
+require 'httparty'
+
 class TimeTweet
   # wrapper for twitter gem
   OFFSET = 3600 # divide the utc offset by this to get it in single hour offsets

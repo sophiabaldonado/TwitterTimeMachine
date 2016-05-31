@@ -19,11 +19,12 @@ class TimeTweet
   end
 
   def self.find_tweet(timewarp)
-    tweets = TwitterClient.search(weather, result_type: "recent").to_a
-    tweets = tweets.take_while { |t| (t.user.utc_offset / OFFSET).to_s == timewarp }
+    coords = self.zone_coords(timewarp)
+    tweets = TwitterClient.search("a", result_type: "recent").to_a
+    tweet = tweets.find { |t| (t.user.utc_offset / OFFSET).to_s == timewarp }
     # binding.pry
     # raise
-    tweet = tweets[0]
+    # tweet = tweets[0]
     self.new(tweet)
   end
 
@@ -32,9 +33,9 @@ class TimeTweet
     self.new(place.first)
   end
 
-  def timezone_map(tweet)
+  def self.zone_coords(offset)
     # prolly find an api that does this -_-;
-    zones = {
+    zone_coords = {
       "12"  => [-17.734978, 168.322821],
       "11"  => [-33.916990, 151.165184],
       "10"  => [35.835973, 139.148079],
@@ -61,6 +62,11 @@ class TimeTweet
       "-11" => [0.811671, -176.618611],
       "-12" => [-36.865823, 174.789578]
     }
+    zone_coords[offset.to_s]
+  end
+
+
+  def timezone_map(tweet)
     c = tweet.geo.coordinates
     GmapsClient.timezone(c)
 

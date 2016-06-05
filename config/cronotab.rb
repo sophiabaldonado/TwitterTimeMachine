@@ -13,4 +13,4 @@
 #
 # Crono.perform(TestJob).every 2.days, at: '15:30'
 #
-Crono.perform(GetTweetsJob.get_tweets).every 10.minutes
+Crono.perform(GetTweetsJob).every 10.minutes

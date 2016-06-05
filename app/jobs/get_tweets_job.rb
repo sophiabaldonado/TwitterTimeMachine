@@ -3,18 +3,19 @@ class GetTweetsJob < ActiveJob::Base
 
   OFFSET = 3600
 
-  def self.get_tweets
+  def perform
     tweets = TwitterClient.search("a", result_type: "recent", count: 5).to_a
     tweets.each do |tweet|
-      t = TimeTweet.new
-      t.text = tweet.text
-      t.user = tweet.user
-      t.popularity = tweet.retweet_count + tweet.favorite_count
-      t.tweeted_at = tweet.created_at
-      t.timezone = tweet.user.utc_offset / OFFSET
-      t.coordinates = tweet.geo.coordinates
+      timetweet = TimeTweet.find_or_create_by(twitter_id: tweet.id)
+      timetweet.text = tweet.text
+      timetweet.user = tweet.user
+      timetweet.popularity = tweet.retweet_count + tweet.favorite_count
+      timetweet.tweeted_at = tweet.created_at
+      timetweet.timezone = tweet.user.utc_offset / OFFSET
+      timetweet.coordinates = tweet.geo.coordinates
+      timetweet.twitter_id = tweet.id
 
-      t.save
+      timetweet.save
     end
   end
 end

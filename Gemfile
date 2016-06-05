@@ -26,6 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'twitter'
 gem 'google_maps_service'
 gem 'httparty'
+gem 'clockwork'
+gem 'crono'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

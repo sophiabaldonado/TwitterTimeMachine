@@ -8,7 +8,9 @@ class TimeTweetsController < ApplicationController
   end
 
   def create
-    @time_tweet = TimeTweet.find_tweet(params["timewarp"])
+    @popular_tweet = TimeTweet.popular_tweet(params["timewarp"])
+    @most_recent_tweet = TimeTweet.most_recent_tweet(params["timewarp"])
+    @random_tweet = TimeTweet.random_tweet(params["timewarp"])
     render :show
   end
 

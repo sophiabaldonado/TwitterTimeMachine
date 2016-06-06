@@ -1,8 +1,19 @@
 <h1>Time Tweet</h1>
 
-<p><%= @time_tweet.text %></p>
-<p><%= @time_tweet.popularity %></p>
-<p><%= @time_tweet.tweeted_at.strftime("%I:%M%P, %B, %d, %Y") %></p>
-<p><%= @time_tweet.timezone %></p>
-<p><%= @time_tweet.coordinates %></p>
-<p><%# @time_tweet.timezone_map %></p>
+<p><%= @popular_tweet.text %></p>
+<p><%= @popular_tweet.popularity %></p>
+<p><%= @popular_tweet.tweeted_at.strftime("%I:%M%P, %B, %d, %Y") %></p>
+<p><%= @popular_tweet.timezone %></p>
+<p><%= @popular_tweet.coordinates %></p>
+
+<p><%= @most_recent_tweet.text %></p>
+<p><%= @most_recent_tweet.popularity %></p>
+<p><%= @most_recent_tweet.tweeted_at.strftime("%I:%M%P, %B, %d, %Y") %></p>
+<p><%= @most_recent_tweet.timezone %></p>
+<p><%= @most_recent_tweet.coordinates %></p>
+
+<p><%= @random_tweet.text %></p>
+<p><%= @random_tweet.popularity %></p>
+<p><%= @random_tweet.tweeted_at.strftime("%I:%M%P, %B, %d, %Y") %></p>
+<p><%= @random_tweet.timezone %></p>
+<p><%= @random_tweet.coordinates %></p>

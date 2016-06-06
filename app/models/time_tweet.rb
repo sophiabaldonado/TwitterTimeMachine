@@ -4,7 +4,7 @@ class TimeTweet < ActiveRecord::Base
   THIRTY_MIN = 30*60
   ONE_HOUR = 60*60
 
-  def self.find_tweet(timewarp)
+  def self.find_tweets(timewarp)
     timewarp = timewarp.to_i
 
     zoned_tweets = TimeTweet.where(timezone: timewarp)
@@ -22,6 +22,11 @@ class TimeTweet < ActiveRecord::Base
     if current_tweets.empty?
       current_tweets = zoned_tweets.select { |tweet| tweet.tweeted_at.between?((Time.now - ONE_HOUR), Time.now) }
     end
+    return current_tweets
+  end
+
+  def self.popular_tweet(timewarp)
+    current_tweets = self.find_tweets(timewarp)
 
     if current_tweets.empty?
       tweet = ["Sorry No Tweets"]
@@ -29,6 +34,30 @@ class TimeTweet < ActiveRecord::Base
       tweet = current_tweets.max_by { |t| t.popularity }
     end
 
-    tweet
+    return tweet
+  end
+
+  def self.most_recent_tweet(timewarp)
+    current_tweets = self.find_tweets(timewarp)
+
+    if current_tweets.empty?
+      tweet = ["Sorry No Tweets"]
+    else
+      tweet = current_tweets.max_by { |t| t.tweeted_at }
+    end
+
+    return tweet
+  end
+
+  def self.random_tweet(timewarp)
+    current_tweets = self.find_tweets(timewarp)
+
+    if current_tweets.empty?
+      tweet = ["Sorry No Tweets"]
+    else
+      tweet = current_tweets.sample
+    end
+
+    return tweet
   end
 end

@@ -20,8 +20,8 @@ Crono.perform(GetWeatherTweetsJob).every 10.minutes
 Crono.perform(GetTimeTweetsJob).every 10.minutes
 Crono.perform(GetBreakfastTweetsJob).every 7.minutes
 Crono.perform(GetLunchTweetsJob).every 15.minutes
-Crono.perform(GetDinnerTweetsJob).every 6.minutes
+Crono.perform(GetDinnerTweetsJob).every 12.minutes
 Crono.perform(GetSleepTweetsJob).every 11.minutes
 Crono.perform(GetWakeTweetsJob).every 15.minutes
-Crono.perform(GetWorkTweetsJob).every 7.minutes
+Crono.perform(GetWorkTweetsJob).every 9.minutes
 Crono.perform(GetSchoolTweetsJob).every 15.minutes

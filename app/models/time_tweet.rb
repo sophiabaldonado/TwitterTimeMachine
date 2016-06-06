@@ -1,28 +1,33 @@
 class TimeTweet < ActiveRecord::Base
 
-  FIFTEEN_MIN = 15*60
-  THIRTY_MIN = 30*60
-  ONE_HOUR = 60*60
-
   def self.find_tweets(timewarp)
     timewarp = timewarp.to_i
 
-    zoned_tweets = TimeTweet.where(timezone: timewarp)
-    if zoned_tweets.empty?
-      zoned_tweets = TimeTweet.where(timezone: (timewarp - 1)..(timewarp + 1))
-    end
-    if zoned_tweets.empty?
-      zoned_tweets = TimeTweet.where(timezone: (timewarp - 2)..(timewarp + 2))
-    end
+    zoned_tweets = self.zoned_tweets(timewarp)
 
-    current_tweets = zoned_tweets.select { |tweet| tweet.tweeted_at.between?((Time.now - FIFTEEN_MIN), Time.now) }
-    if current_tweets.empty?
-      current_tweets = zoned_tweets.select { |tweet| tweet.tweeted_at.between?((Time.now - THIRTY_MIN), Time.now) }
+    minutes_passed = 15
+    current_tweets = self.recent_tweets(zoned_tweets, minutes_passed)
+    while current_tweets.empty? && minutes_passed <= 720
+      current_tweets = self.recent_tweets(zoned_tweets, minutes_passed)
+      minutes_passed += 15
     end
-    if current_tweets.empty?
-      current_tweets = zoned_tweets.select { |tweet| tweet.tweeted_at.between?((Time.now - ONE_HOUR), Time.now) }
-    end
-    return current_tweets
+    current_tweets
+  end
+
+  private
+
+  def self.recent_tweets(zoned_tweets, minutes_passed)
+    zoned_tweets.select { |tweet| tweet.tweeted_at.between?((Time.now - 60 * minutes_passed), Time.now) }
+  end
+
+  def self.zoned_tweets(timewarp, timezone_offset=0, tweets=[])
+    positive_offset = timewarp + timezone_offset
+    negative_offset = timewarp - timezone_offset
+    return tweets if positive_offset > 12 && negative_offset < -12 #look at min and max
+    return tweets if !timewarp.between?(-12, 12)
+    return tweets if tweets.any?
+    tweets = TimeTweet.where(timezone: negative_offset..positive_offset)
+    zoned_tweets(timewarp, (timezone_offset + 1), tweets)
   end
 
   def self.popular_tweet(timewarp)

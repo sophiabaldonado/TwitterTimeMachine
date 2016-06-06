@@ -7,25 +7,28 @@ class TimeTweet < ActiveRecord::Base
   def self.find_tweet(timewarp)
     timewarp = timewarp.to_i
 
-    tweets = TimeTweet.where(timezone: timewarp)
-    if tweets.empty?
-      tweets = TimeTweet.where(timezone: (timewarp - 1)..(timewarp + 1))
+    zoned_tweets = TimeTweet.where(timezone: timewarp)
+    if zoned_tweets.empty?
+      zoned_tweets = TimeTweet.where(timezone: (timewarp - 1)..(timewarp + 1))
     end
-    if tweets.empty?
-      tweets = TimeTweet.where(timezone: (timewarp - 2)..(timewarp + 2))
-    end
-
-    tweets = tweets.map { |tweet| tweet.tweeted_at.between?((Time.now - FIFTEEN_MIN), Time.now) }
-    if tweets.empty?
-      tweets = tweets.map { |tweet| tweet.tweeted_at.between?((Time.now - THIRTY_MIN), Time.now) }
-    end
-    if tweets.empty?
-      tweets = tweets.map { |tweet| tweet.tweeted_at.between?((Time.now - ONE_HOUR), Time.now) }
+    if zoned_tweets.empty?
+      zoned_tweets = TimeTweet.where(timezone: (timewarp - 2)..(timewarp + 2))
     end
 
-    if tweets.empty?
+    current_tweets = zoned_tweets.select { |tweet| tweet.tweeted_at.between?((Time.now - FIFTEEN_MIN), Time.now) }
+    if current_tweets.empty?
+      current_tweets = zoned_tweets.select { |tweet| tweet.tweeted_at.between?((Time.now - THIRTY_MIN), Time.now) }
+    end
+    if current_tweets.empty?
+      current_tweets = zoned_tweets.select { |tweet| tweet.tweeted_at.between?((Time.now - ONE_HOUR), Time.now) }
+    end
+
+    if current_tweets.empty?
       tweet = ["Sorry No Tweets"]
+    else
+      tweet = current_tweets.max_by { |t| t.popularity }
     end
 
+    tweet
   end
 end

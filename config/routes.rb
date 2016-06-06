@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   post '/time-tweet' => 'time_tweets#create'
 
   get '/auth/:provider/callback' => 'sessions#create'
+  resources :sessions, only: [:create, :destroy]
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

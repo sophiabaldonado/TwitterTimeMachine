@@ -3,12 +3,18 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   require_relative '../../config/initializers/twitter'
   protect_from_forgery with: :exception
-  helper_method :hourly_offset
+  helper_method :current_user, :user_favorited?
+  # before_action :require_login
 
-  OFFSET = 3600 # divide the utc offset by this to get it in single hour offsets
+  def current_user
+    @current_user ||= User.find_by(id: session[:user_id])
+  end
 
-  def hourly_offset(utc_offset)
-    utc_offset / OFFSET
+  def require_login
+    if current_user.nil?
+      flash[:error] = "You must be logged in to view this section"
+      redirect_to '/auth/spotify'
+    end
   end
 
 end

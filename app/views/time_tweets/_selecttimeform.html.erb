@@ -1,5 +1,23 @@
 <%= form_tag :time_tweet do |f| %>
   <%= label_tag :timewarp %>
-  <%= select_tag :timewarp, options_for_select(-12..12) %>
+  <%= select_tag :timewarp, options_for_select(-12..12, {selected: "0"}) %>
+  <%= hidden_field_tag 'timezone', "", {id: 'zone'} %>
+
+  <script type="text/javascript">
+    function timezone() {
+      // return (new Date()).getTimezoneOffset()/60
+      var currentTime = new Date();
+      var currentTimezone = currentTime.getTimezoneOffset();
+      currentTimezone = (currentTimezone/60) * -1;
+      var gmt = '';
+      if (currentTimezone !== 0) {
+        gmt += currentTimezone > 0 ? '+' : '';
+        gmt += currentTimezone;
+      }
+      return gmt
+    }
+    document.getElementById('zone').value = timezone()
+  </script>
+
   <%= submit_tag"Go!" %>
 <% end %>

@@ -16,6 +16,12 @@ class TimeTweetsController < ApplicationController
     @display_time = TimeTweet.time(timewarp, zone, popular_tweet.tweeted_at)
     @sunrise_time = TimeTweet.time(timewarp, zone, popular_tweet.tweeted_at)
     @sunset_time = TimeTweet.time(timewarp, zone, popular_tweet.tweeted_at)
+
+    # coords = popular_tweet.coordinates if popular_tweet.coordinates
+    coords = ["13.751229", "100.727425"]
+    daylight = DaylightWrapper.get_daylight(coords)
+    @rsunrise_time = Time.parse(daylight.sunrise)
+    @rsunset_time = Time.parse(daylight.sunset)
     @adjusted_timezone = timewarp.to_i + zone.to_i
 
     @embeded_popular_tweet = TwitterClient.oembed(popular_tweet.twitter_id)

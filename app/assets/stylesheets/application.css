@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+
+* {
+  font-family: 'Slabo 13px', georgia, serif;;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+h1 {
+  color: #575656;
+  font-size: 5rem;
+}
+
+body {
+  background-color: #8C788F;
+}
+
+.right {
+  float: right;
+}

@@ -2,29 +2,46 @@
 <html>
 <head>
   <title>SpringbreakProject</title>
+  <script>
+    window.twttr = (function (d, s, id) {
+      var t, js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src= "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+      return window.twttr || (t = { _e: [], ready: function (f) { t._e.push(f) } });
+    }
+    (document, "script", "twitter-wjs"));
+  </script>
+
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="build.css">
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Slabo+13px' rel='stylesheet' type='text/css'>
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <header>
+  <!-- <header>
     <nav class="navbar navbar-inverse navbar-collapse">
       <%= link_to root_path do %>
         <h1 class="navbar-header navbar-brand">Twitter Time Machine</h1>
       <% end %>
       <% if current_user %>
-      <ul class="nav navbar-nav">
-        <li class="navbar-text">
-          <%= link_to favorites_path do %>
-            <i class="fa fa-fire" aria-hidden="true"></i> My Favorites
-          <% end %>
-        </li>
-      </ul>
       <% else %>
       <div class="navbar-right">
+        <%#
         <ul class="nav navbar-nav">
-          <li class="navbar-user-info"><%= button_to 'Log In With Twitter', '/auth/twitter', class: "btn btn-success" unless current_user %></li>
+          <li class="navbar-user-info"><%= button_to 'Log In With Twitter', '/auth/twitter', class: "btn btn-success" unless current_user %><%#</li>
         </ul>
+        %>
       </div>
       <% end %>
       <% if current_user %>
@@ -37,7 +54,7 @@
         </div>
       <% end %>
     </nav>
-  </header>
+  </header> -->
   <section class="container">
 
   <%= yield %>

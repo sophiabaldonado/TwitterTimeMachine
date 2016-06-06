@@ -1,33 +1,44 @@
-<script>
-  window.twttr = (function (d, s, id) {
-    var t, js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src= "https://platform.twitter.com/widgets.js";
-    fjs.parentNode.insertBefore(js, fjs);
-    return window.twttr || (t = { _e: [], ready: function (f) { t._e.push(f) } });
-  }
-  (document, "script", "twitter-wjs"));
-</script>
+<header class="show-header">
+  <%= link_to root_path do %>
+    <p class="navbar-header navbar-brand">Twitter Time Machine</p>
+  <% end %>
+</header>
 
-<h1>Time Tweet</h1>
+<div class="warpzone">
+  <h2>Welcome to the <%= @selected_time %>!</h2>
 
-<%= raw(@embeded_tweet.html) %>
+<article class="tweets">
+  <div class="tweet">
+    <%= raw(@embeded_popular_tweet.html) %>
+  </div>
+  <div class="tweet">
+    <%= raw(@embeded_most_recent_tweet.html) %>
+  </div>
+  <div class="tweet">
+    <%= raw(@embeded_random_tweet.html) %>
+  </div>
+</article>
 
-<p><%= @popular_tweet.text %></p>
-<p><%= @popular_tweet.popularity %></p>
-<p><%= @popular_tweet.tweeted_at.strftime("%I:%M%P, %B, %d, %Y") %></p>
-<p><%= @popular_tweet.timezone %></p>
-<p><%= @popular_tweet.coordinates %></p>
+<div class="right display-time">
+<div class="time clock">
+  <h3>Time:</h3>
+  <span class="format-time"><%= @display_time.strftime("%I:%M%P") %></span>
+  <span class="format-time"><%= @display_time.strftime("%B, %d, %Y") %></span>
+</div>
+<div class="time sun" cun>
+  <h3>Sunrise:</h3>
+  <span class="format-time"><%= @sunrise_time.strftime("%I:%M%P") %></span>
+  <span class="format-time"><%= @sunrise_time.strftime("%B, %d, %Y") %></span>
+</div>
+<div class="time moon">
+  <h3>Sunset:</h3>
+  <span class="format-time"><%= @sunset_time.strftime("%I:%M%P") %></span>
+  <span class="format-time"><%= @sunset_time.strftime("%B, %d, %Y") %></span>
+</div>
+</div>
 
-<p><%= @most_recent_tweet.text %></p>
-<p><%= @most_recent_tweet.popularity %></p>
-<p><%= @most_recent_tweet.tweeted_at.strftime("%I:%M%P, %B, %d, %Y") %></p>
-<p><%= @most_recent_tweet.timezone %></p>
-<p><%= @most_recent_tweet.coordinates %></p>
+<div class="right timezone-map">
+  <%= image_tag "#{@adjusted_timezone}.png" %>
+</div>
 
-<p><%= @random_tweet.text %></p>
-<p><%= @random_tweet.popularity %></p>
-<p><%= @random_tweet.tweeted_at.strftime("%I:%M%P, %B, %d, %Y") %></p>
-<p><%= @random_tweet.timezone %></p>
-<p><%= @random_tweet.coordinates %></p>
+</div>

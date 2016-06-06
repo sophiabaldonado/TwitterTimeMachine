@@ -1,3 +1,110 @@
 // Place all the styles related to the TimeTweets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/** Index **/
+
+.timewarp-home, .timewarp-form {
+  display: block;
+  width: 60%;
+  margin: auto;
+  text-align: center;
+}
+
+.timewarp-home {
+  background-color: white;
+  padding: 4rem;
+  margin-top: 15rem;
+  border: solid .05rem grey;
+  border-radius: .5rem;
+}
+
+.timewarp-form {
+  margin: 5rem auto;
+  font-size: 2rem;
+}
+
+.timewarp-form select {
+  transform: scale(1.4);
+  margin: 3rem;
+}
+
+/** Show **/
+
+.show-header {
+  float: left;
+}
+
+.show-header p {
+  color: white;
+}
+
+.warpzone {
+  clear: both;
+}
+
+.warpzone h2 {
+  color: #DFDFDF;
+  text-align: center;
+  overflow: auto;
+  width: 100%;
+}
+
+.tweets {
+  float: left;
+  padding: 2rem 0;
+}
+
+.tweets .tweet {
+  display: block;
+  margin-left: 1%;
+}
+
+.display-time {
+  width: 55%;
+  background-color: white;
+  border: solid .05rem grey;
+  border-radius: .5rem;
+  margin: 3rem auto 2rem auto;
+  padding: 4rem;
+  text-align: center;
+}
+
+.display-time h3 {
+  margin: 1rem auto;
+}
+
+.time {
+  display: inline-block;
+  margin: 0 7%;
+}
+
+.clock {
+  background-image: image-url("clock.png");
+  background-size: cover;
+}
+
+.sun {
+  background-image: image-url("sun.png");
+  background-size: cover;
+}
+
+.moon {
+  background-image: image-url("moon.png");
+  background-size: cover;
+}
+
+.timezone-map {
+  width: 55%;
+  overflow: auto;
+  border-radius: 1rem;
+}
+
+.timezone-map img {
+  width: 100%;
+  border-radius: 1rem;
+}
+
+.format-time {
+  display: block;
+}

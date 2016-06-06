@@ -1,11 +1,10 @@
-<%= form_tag :time_tweet do |f| %>
+<%= form_tag :time_tweet, class: "form-signin" do |f| %>
   <%= label_tag :timewarp %>
-  <%= select_tag :timewarp, options_for_select(-12..12, {selected: "0"}) %>
+  <%= select_tag :timewarp, options_for_select(-12..12, {selected: "0", class: "form-control"}) %>
   <%= hidden_field_tag 'timezone', "", {id: 'zone'} %>
 
   <script type="text/javascript">
     function timezone() {
-      // return (new Date()).getTimezoneOffset()/60
       var currentTime = new Date();
       var currentTimezone = currentTime.getTimezoneOffset();
       currentTimezone = (currentTimezone/60) * -1;
@@ -19,5 +18,5 @@
     document.getElementById('zone').value = timezone()
   </script>
 
-  <%= submit_tag"Go!" %>
+  <%= submit_tag"Go!", class: "btn btn-success" %>
 <% end %>

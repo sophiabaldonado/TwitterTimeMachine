@@ -9,6 +9,7 @@ class TimeTweetsController < ApplicationController
 
   def create
     @popular_tweet = TimeTweet.popular_tweet(params["timewarp"])
+    @embeded_tweet = TwitterClient.oembed(@popular_tweet.twitter_id)
     @most_recent_tweet = TimeTweet.most_recent_tweet(params["timewarp"])
     @random_tweet = TimeTweet.random_tweet(params["timewarp"])
     render :show

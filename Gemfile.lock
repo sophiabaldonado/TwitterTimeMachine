@@ -261,6 +261,7 @@ DEPENDENCIES
   jquery-rails
   minitest-reporters
   minitest-vcr
+  omniauth
   omniauth-twitter
   pg
   pry-rails

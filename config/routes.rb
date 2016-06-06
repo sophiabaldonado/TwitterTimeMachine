@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get '/time-tweet' => 'time_tweets#show'
   post '/time-tweet' => 'time_tweets#create'
 
+  get '/auth/:provider/callback' => 'sessions#create'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

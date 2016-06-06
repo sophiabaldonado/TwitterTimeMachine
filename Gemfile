@@ -26,6 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'twitter'
 gem 'google_maps_service'
 gem 'crono'
+gem 'omniauth'
 gem 'omniauth-twitter'
 
 # Use ActiveModel has_secure_password

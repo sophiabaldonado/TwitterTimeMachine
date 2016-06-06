@@ -31,7 +31,7 @@ gem 'omniauth-twitter'
 gem 'bootstrap-sass', '~>3.2.0'
 gem 'autoprefixer-rails'
 gem 'timezone', '~> 1.0'
-
+gem 'httparty'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

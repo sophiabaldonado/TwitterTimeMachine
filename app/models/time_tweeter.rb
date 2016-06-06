@@ -1,5 +1,3 @@
-# require 'httparty'
-
 class TimeTweeter
   # wrapper for twitter gem
   OFFSET = 3600 # divide the utc offset by this to get it in single hour offsets
@@ -15,15 +13,7 @@ class TimeTweeter
       @coordinates = tweet.geo.coordinates
       # @timezone_map = timezone_map(tweet)
     end
-
   end
-
-  # def self.find_tweet(timewarp)
-  #   auth = {username: ENV["TWITTER_USER"], password: ENV["TWITTER_PASSWORD"]}
-  #   tweets = HTTParty.get('https://api.twitter.com/1.1/search/tweets.json?q=%40twitterapi', basic_auth: auth).parsed_response
-  #   self.new(tweets)
-  # end
-
 
   def self.find_tweet(timewarp)
     timewarp = timewarp.to_i
